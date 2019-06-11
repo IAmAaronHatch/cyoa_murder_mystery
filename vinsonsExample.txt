@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoCorrect</title>
+</head>
+<body>
+<input type="text">
+<div id="question">
+
+</div>
+<ul id="options">
+
+</ul>
+<script src="question.js">
+
+</script>
+<script>
+    const options = document.querySelector('#options');
+    const array = [];
+    let currentQuestion = 'openDoor';
+    const obj = {
+        question: 'do you open the door?',
+        yes: function () {
+            console.log('you picked yes');
+            game.drinkPotion.createDisplay()
+        },
+        no: function () {
+            console.log('you picked no')
+        },
+        createDisplay() {
+            document.getElementById('question').innerText = game['openDoor'].question;
+          options.innerHTML = '<li onclick="game[`openDoor`].yes()">yes</li><li onclick="game[`openDoor`].no()">no</li>';
+          options.querySelectorAll('li')
+        }
+    };
+    const obj2 = {
+        question: potion,
+        yes: function () {
+            console.log('you picked yes')
+        },
+        no: function () {
+            console.log('you picked no')
+        },
+        createDisplay() {
+            document.getElementById('question').innerText = game['drinkPotion'].question;
+            options.innerHTML = '<li onclick="game[`drinkPotion`].yes()">yes</li><li onclick="game[`drinkPotion`].no()">no</li>';
+            options.querySelectorAll('li')
+        }
+    };
+    array.push(obj);
+
+    const game = {
+        inventory: ['blue key'],
+        openDoor : obj,
+        drinkPotion: obj2,
+    };
+
+
+    obj.createDisplay();
+</script>
+</body>
+</html>

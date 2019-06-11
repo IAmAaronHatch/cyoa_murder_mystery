@@ -1,0 +1,85 @@
+
+list of problems to figure out and possible solutions =  {
+    - how do i get rid of the previous buttons after a new choice is displayed
+        -use an a tag to lead to new choices every time, the draw back to this is it being very slow.
+        - insert the values in through class or id to change just the inner html and value of the button and not change the actual button itself
+    - call buildFuncParent without creating an infinite loope
+
+
+}
+
+STEPS WITH BASIC FUNCTION
+
+1. Push initial Decisions onto the board, because the array will be empty. Possibly in the switch statement, if arr is empty, push three decisions to board.
+2. To get onto the screen, buildFuncParent() is called to display all three button choices.
+3. the buildFuncParent() uses the buildFunc() to actually build the html for each button. 
+4. buildFunc()
+    4a. this will actually create the button el with document.createElement(`button`);
+    4b. The key/value pairs from the object partOne_dec1 will be passed down
+    4c. Each button will have the function pushDecToArr() to push the key value
+
+
+
+
+METHODS ON THE OBJECTS TO MANAGE EVERTTHINg
+
+
+The dialogue and choices will be kept in another file.
+ ex: const partOne_dec1 (decision) = {
+    (key) d1: `text for decision one goes here`,
+    d2: `text for decision two goes here`,
+    d3: `decision 3`;
+}
+
+// This arr will hold the key values from the objects that have been picked to check for future decisions
+const choices = [];
+
+
+// this func is responsible for getting that key value into the choices array
+const pushDecToArr = (key) => {
+    choices.push(key)
+}
+
+
+
+const buildFunc = (type, parent, text) => {
+
+    // code for building and desplaying text goes here
+            - the text will be inside of a button
+            - each button will have the pushDecToArr() function, sending the key from partOne_dec1 objects to arr
+    // text is recieved from parent function
+
+    // This is responsible for building the button or the text,
+    let el = document.createElement(type);
+            parent.appendChild(el);
+
+            if (text) {
+                el.innerText = text;
+            }
+            return el;
+}
+
+***** THIS ONE NEEDS WORK
+
+how do i call this function without creating an infinite loop ********
+
+// This function will call the buildFunc three times to display the three different buttons (decisions) onto the screen
+const buildFuncParent = () => {
+    buildFunc();
+    buildFunc();
+    buildFunc();
+}
+
+
+// A switch statement will be used to correctly loop through the choices arr
+
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
