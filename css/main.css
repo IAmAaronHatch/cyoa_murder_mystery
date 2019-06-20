@@ -11,12 +11,16 @@ body * {
 /* MAIN STYLING */
 
 .wrapper {
-   background-color: black;
+   background-color: rgb(138, 138, 138);
+   
+
 }
 
 .game-container {
     background-color: lightblue;
-    border: 1px black solid
+    border: 1px black solid;
+    height: 300px;
+    width: 40%;
 }
 #options {
     border: 1px black solid

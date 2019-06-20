@@ -1,4 +1,13 @@
 
+
+//  HTML CONTAINER ELEMENTS
+
+const gameContainer = document.querySelector('.game-container');
+const decisionContainer = document.querySelector('.dec-container');
+const characterContainer = document.querySelector('.char-container');
+const invContainer = document.querySelector('.inv-container');
+
+
 // ***** LOGIN SECTION *****
 
 
@@ -8,24 +17,27 @@
 
 
 
+let userName = '';
 
-
-
-let userName = 'Jeremy';
-
-const gameContainer = document.querySelector('.game-container');
-const decisionContainer = document.querySelector('.dec-container');
-const characterContainer = document.querySelector('.char-container');
-const invContainer = document.querySelector('.inv-container');
+console.log('before', userName);
 
 
 const userNameInput = document.createElement('input');
 gameContainer.appendChild(userNameInput);
 
+
 const testStartBtn = document.createElement('button');
-testStartBtn.innerText = 'Fake Start';
+testStartBtn.innerText = 'Submit Name';
 testStartBtn.addEventListener('click', function () {
+    userName = userNameInput.value;
+
+    const displayName = document.createElement('h2');
+    displayName.innerText = userName;
+    characterContainer.prepend(displayName);
+
+
     mainText.text1.createDisplay();
+    console.log('after', userName);
 });
 gameContainer.appendChild(testStartBtn);
 
@@ -79,6 +91,7 @@ const mainText = {
         createDisplay(){
             document.getElementById('question').innerText = game['text1'].dialogue;
 
+            console.log('username', userName)
             options.innerHTML = `<li onclick="game['text1'].next()"> > </li>`
         }
     },
@@ -139,10 +152,6 @@ const game = {
 
 // on login, once you have finished login, to submit the input value into the user variable, call this function to start the text!
 // mainText.text1.createDisplay();
-
-
-
-
 
 
 
