@@ -1,7 +1,14 @@
+
+/* GENERAL PRESETS */
+
 body * {
     margin: 0px;
     padding: 0px;
 }
+
+
+
+/* MAIN STYLING */
 
 .wrapper {
    background-color: black;
@@ -9,7 +16,7 @@ body * {
 
 .game-container {
     background-color: lightblue;
-   
+    border: 1px black solid
 }
 #options {
     border: 1px black solid
@@ -21,8 +28,37 @@ body * {
 
 .char-container {
     background-color: lightgoldenrodyellow;
+    display: flex;
 }
 
-.inventory  {
+.inv-container  {
+    background-color: lightgreen;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* BORDERS FOR GAME-CONTAINER */
+
+.blue-border-btn {
+    height: 20px;
+    width: 20px;
+    background-color: lightblue;
+}
+.red-border-btn {
+    height: 20px;
+    width: 20px;
+    background-color: lightcoral;
+}
+.green-border-btn {
+    height: 20px;
+    width: 20px;
     background-color: lightgreen;
 }

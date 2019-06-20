@@ -15,6 +15,8 @@ let userName = 'Jeremy';
 
 const gameContainer = document.querySelector('.game-container');
 const decisionContainer = document.querySelector('.dec-container');
+const characterContainer = document.querySelector('.char-container');
+const invContainer = document.querySelector('.inv-container');
 
 
 const userNameInput = document.createElement('input');
@@ -161,12 +163,23 @@ const game = {
 
 
 const blueBorder = document.createElement('div');
-blueBorder.classList.add('blue-border');
+blueBorder.classList.add('blue-border-btn');
+blueBorder.addEventListener('click', function(){
+    gameContainer.style.border = 'lightblue 2px solid'
+});
+
 const redBorder = document.createElement('div');
-blueBorder.classList.add('red-border');
+redBorder.classList.add('red-border-btn');
+redBorder.addEventListener('click', function () {
+    gameContainer.style.border = 'lightcoral 2px solid'
+});
 
 const greenBorder = document.createElement('div');
-blueBorder.classList.add('green-border');
+greenBorder.classList.add('green-border-btn');
+greenBorder.addEventListener('click', function () {
+    gameContainer.style.border = 'lightgreen 2px solid'
+});
 
-
-gameContainer.appendChild(blueBorder, redBorder, greenBorder);
+characterContainer.appendChild(blueBorder);
+characterContainer.appendChild(greenBorder);
+characterContainer.appendChild(redBorder);
