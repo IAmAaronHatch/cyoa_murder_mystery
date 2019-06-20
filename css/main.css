@@ -1,0 +1,28 @@
+body * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper {
+   background-color: black;
+}
+
+.game-container {
+    background-color: lightblue;
+   
+}
+#options {
+    border: 1px black solid
+}
+
+.dec-container {
+    background-color: lightcoral;
+}
+
+.char-container {
+    background-color: lightgoldenrodyellow;
+}
+
+.inventory  {
+    background-color: lightgreen;
+}
