@@ -1,7 +1,52 @@
 
+// ***** LOGIN SECTION *****
+
+
+
+
+
+
+
+
+
+
+
+let userName = 'Jeremy';
 
 const gameContainer = document.querySelector('.game-container');
 const decisionContainer = document.querySelector('.dec-container');
+
+
+const userNameInput = document.createElement('input');
+gameContainer.appendChild(userNameInput);
+
+const testStartBtn = document.createElement('button');
+testStartBtn.innerText = 'Fake Start';
+testStartBtn.addEventListener('click', function () {
+    mainText.text1.createDisplay();
+});
+gameContainer.appendChild(testStartBtn);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ***** GAME CODE *****
+
+
+
+
+
+
+
 
 // create div/id for displaying the question on the screen
 const setQuestion = document.createElement('div');
@@ -22,7 +67,6 @@ const array = [];
 
 // let currentQuestion = 'openDoor';
 
-let userName = 'Jeremy';
 
 const mainText = {
     text1: {
@@ -92,5 +136,37 @@ const game = {
 
 
 // on login, once you have finished login, to submit the input value into the user variable, call this function to start the text!
-mainText.text1.createDisplay();
+// mainText.text1.createDisplay();
 
+
+
+
+
+
+
+
+
+
+
+
+
+// ***** COLOR CHANGE BORDER ******
+
+
+
+
+
+
+
+
+
+const blueBorder = document.createElement('div');
+blueBorder.classList.add('blue-border');
+const redBorder = document.createElement('div');
+blueBorder.classList.add('red-border');
+
+const greenBorder = document.createElement('div');
+blueBorder.classList.add('green-border');
+
+
+gameContainer.appendChild(blueBorder, redBorder, greenBorder);
