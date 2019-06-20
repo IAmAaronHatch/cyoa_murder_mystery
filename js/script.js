@@ -50,7 +50,7 @@ const mainText = {
     text3: {
         dialogue: `You step out of the car. The rain is persistant, coming down in sheets. You glance upon the manner that looms infront ahead. A large mansion, beautifully crafter, large windows with light pouring out to the darkness.`,
         next: function () {
-            game.text4.createDisplay();
+            game.openDoor.createDisplay();
         },
         createDisplay() {
             document.getElementById('question').innerText = game['text3'].dialogue;
@@ -58,19 +58,16 @@ const mainText = {
             options.innerHTML = `<li onclick="game['text3'].next()"> > </li>`
         }
     },
-    text4: {
-        dialogue: `You unfortunately didn't bring an umbrella, so you quickly run up to the front door.`
-    },
     openDoorChoice: {
-        question: 'do you open the door?',
-        yes: function () {
-            alert('you picked yes');
-            game.drinkPotion.createDisplay();
+        question: `You unfortunately didn't bring an umbrella, so you quickly run up to the front door. Do you knock or do you open the front door?`,
+        knock: function () {
+            game.knockOnFrontDoor.createDisplay();
         },
-        no: function () {
-            alert('you picked no');
+        open: function () {
+            game.openWithoutKnock.createDisplay();
         },
-        optionText: `<li onclick="game['openDoor'].yes()"> Yes      </li><li onclick="game['openDoor'].no()"> No            </li>`,
+        optionText: `<li onclick="game['openDoor'].knock()"> Knock on the door </li>
+        <li onclick="game['openDoor'].open()"> Open the door </li>`,
         createDisplay(optionText) {
             document.getElementById('question').innerText = game['openDoor'].question;
 
@@ -79,24 +76,7 @@ const mainText = {
             options.querySelectorAll('li');
         }
     },
-    potionChoice: {
-        question: 'drink the potion?',
-        yes: function () {
-            alert('you picked yes');
-        },
-        no: function () {
-            console.log('no');
-        },
-        createDisplay() {
-            document.getElementById('question').innerText = game['drinkPotion'].question;
-
-            options.innerHTML =
-                `<li onclick="game['drinkPotion'].yes()"> Yes </li>
-        <li onclick="game['drinkPotion'].no()"> No </li>`;
-
-            options.querySelectorAll('li');
-        }
-    }
+    
 }
 
 
@@ -106,8 +86,8 @@ const game = {
     inventory: [],
     text1: mainText.text1,
     text2: mainText.text2,
+    text3: mainText.text3,
     openDoor: mainText.openDoorChoice,
-    drinkPotion: mainText.potionChoice,
 };
 
 
