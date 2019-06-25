@@ -12,22 +12,36 @@ body * {
 
 .wrapper {
    background-color: rgb(138, 138, 138);
-   
-
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+   align-items: center;
 }
 
 .game-container {
     background-color: lightblue;
     border: 1px black solid;
     height: 300px;
-    width: 40%;
+    width: 60%;
+    margin-top: 40px;
+    margin-bottom: 4vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 #options {
-    border: 1px black solid
+    border: 1px black solid;
 }
 
 .dec-container {
     background-color: lightcoral;
+    height: 300px;
+    width: 60%;
+    margin-right: 75px;
+    margin-bottom: 4vh;
+    
 }
 
 .char-container {

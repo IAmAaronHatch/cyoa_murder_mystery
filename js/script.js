@@ -26,20 +26,24 @@ const userNameInput = document.createElement('input');
 gameContainer.appendChild(userNameInput);
 
 
-const testStartBtn = document.createElement('button');
-testStartBtn.innerText = 'Submit Name';
-testStartBtn.addEventListener('click', function () {
+const submitNameBtn = document.createElement('button');
+submitNameBtn.innerText = 'Submit Name';
+submitNameBtn.addEventListener('click', function () {
     userName = userNameInput.value;
 
     const displayName = document.createElement('h2');
     displayName.innerText = userName;
     characterContainer.prepend(displayName);
 
+    userNameInput.style.display = 'none';
+    submitNameBtn.style.display = 'none';
+
+
 
     mainText.text1.createDisplay();
     console.log('after', userName);
 });
-gameContainer.appendChild(testStartBtn);
+gameContainer.appendChild(submitNameBtn);
 
 
 
