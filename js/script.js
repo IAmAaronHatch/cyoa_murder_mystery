@@ -19,9 +19,15 @@ const invContainer = document.querySelector('.inv-container');
 
 let userName;
 
+const inputContainer = document.createElement('div');
+inputContainer.classList.add('inputContainer');
+gameContainer.appendChild(inputContainer);
 
 const userNameInput = document.createElement('input');
-gameContainer.appendChild(userNameInput);
+inputContainer.appendChild(userNameInput);
+userNameInput.id = 'userNameInput';
+userNameInput.placeholder = 'What is your name?';
+
 
 
 const submitNameBtn = document.createElement('button');
@@ -36,10 +42,13 @@ submitNameBtn.addEventListener('click', function () {
     userNameInput.style.display = 'none';
     submitNameBtn.style.display = 'none';
 
+    const questionBox = document.querySelector('#question');
+    questionBox.style.display = 'block';
+
     start();
 
 });
-gameContainer.appendChild(submitNameBtn);
+inputContainer.appendChild(submitNameBtn);
 
 
 
@@ -179,6 +188,14 @@ function start () {
 
 
 
+
+const femaleImg = document.createElement('div');
+characterContainer.appendChild(femaleImg);
+femaleImg.innerText = 'female';
+
+const maleImg = document.createElement('div');
+characterContainer.appendChild(maleImg);
+maleImg.innerText = 'male';
 
 
 
