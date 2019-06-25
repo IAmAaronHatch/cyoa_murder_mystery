@@ -82,10 +82,9 @@ const array = [];
 // let currentQuestion = 'openDoor';
 
 let mainText;
+let game;
 
 function start () {
-
-    
     mainText = {
         text1: {
             dialogue: `It is a dark and stormy night. You, ${userName} look down at your invitation you had recently recieved.`,
@@ -149,7 +148,7 @@ function start () {
     }
 
 
-    const game = {
+    game = {
         inventory: [],
         text1: mainText.text1,
         text2: mainText.text2,
