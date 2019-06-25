@@ -17,9 +17,7 @@ const invContainer = document.querySelector('.inv-container');
 
 
 
-let userName = '';
-
-console.log('before', userName);
+let userName;
 
 
 const userNameInput = document.createElement('input');
@@ -41,7 +39,6 @@ submitNameBtn.addEventListener('click', function () {
 
 
     mainText.text1.createDisplay();
-    console.log('after', userName);
 });
 gameContainer.appendChild(submitNameBtn);
 
@@ -178,7 +175,7 @@ const game = {
 const blueBorder = document.createElement('div');
 blueBorder.classList.add('blue-border-btn');
 blueBorder.addEventListener('click', function(){
-    gameContainer.style.border = 'lightblue 2px solid'
+    gameContainer.style.border = 'lightblue 2px solid';
 });
 
 const redBorder = document.createElement('div');
