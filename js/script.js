@@ -101,7 +101,7 @@ let game;
 function start () {
     mainText = {
         text1: {
-            dialogue: `It is a dark and stormy night. You, ${userName} look down at your invitation you had recently recieved.`,
+            dialogue: `It is a dark and stormy night. You, ${userName} look down at your invitation you had recently received.`,
             next: function () {
                 game.text2.createDisplay();
             },
@@ -112,7 +112,7 @@ function start () {
             }
         },
         text2: {
-            dialogue: `The invitation informed ${userName} of a dinner party being held tonight. "I wonder who else is going to show up?", you question.`,
+            dialogue: `The invitation informed ${userName} of a dinner party being held tonight at the old manner. "I wonder who else is going to show up?", you question.`,
             next: function () {
                 game.text3.createDisplay();
             },
@@ -123,7 +123,7 @@ function start () {
             }
         },
         text3: {
-            dialogue: `You step out of the car. The rain is persistant, coming down in sheets. You glance upon the manner that looms infront ahead. A large mansion, beautifully crafter, large windows with light pouring out to the darkness.`,
+            dialogue: `You step out of the car. The rain is persistant, coming down in sheets. You glance upon the manner that looms straight ahead; a large mansion, beautifully crafted, with large windows with light pouring out to the darkness.`,
             next: function () {
                 game.openDoor.createDisplay();
             },
@@ -250,13 +250,25 @@ const borderContainer = document.createElement('div');
 borderContainer.classList.add('borderContainer');
 characterContainer.appendChild(borderContainer);
 
+const boxShadowBorder = document.createElement('div');
+boxShadowBorder.classList.add('boxshadow-btn');
+boxShadowBorder.addEventListener('click', function(){
+    let bshadow = '0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee';
+    let bs = '1px dashed #ddd';
+    gameContainer.style.boxShadow = bshadow;
+    gameContainer.style.border = bs;
+    decisionContainer.style.boxShadow = bshadow;    
+    decisionContainer.style.border = bs;    
+    
+})
+
 const blueBorder = document.createElement('div');
 blueBorder.classList.add('blue-border-btn');
 blueBorder.addEventListener('click', function () {
-    let bs = 'lightblue 4px solid'
+    let bs = '4px solid lightblue';
+    
     gameContainer.style.border = bs;
     decisionContainer.style.border = bs;
-    // options.style.backgroundColor = 'lightblue'; 
 });
 
 const redBorder = document.createElement('div');
@@ -279,3 +291,4 @@ greenBorder.addEventListener('click', function () {
 borderContainer.appendChild(blueBorder);
 borderContainer.appendChild(greenBorder);
 borderContainer.appendChild(redBorder);
+borderContainer.appendChild(boxShadowBorder);
