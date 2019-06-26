@@ -31,21 +31,26 @@ userNameInput.placeholder = 'What is your name?';
 
 
 const submitNameBtn = document.createElement('button');
-submitNameBtn.innerText = 'Submit Name';
+submitNameBtn.innerText = 'Submit';
 submitNameBtn.addEventListener('click', function () {
-    userName = userNameInput.value;
+    if(!userNameInput.value){
+        alert('Please enter a name');
+    } else {
+        userName = userNameInput.value;
 
-    const displayName = document.createElement('h2');
-    displayName.innerText = userName;
-    characterContainer.prepend(displayName);
+        const displayName = document.createElement('h2');
+        displayName.innerText = userName;
+        characterContainer.prepend(displayName);
 
-    userNameInput.style.display = 'none';
-    submitNameBtn.style.display = 'none';
+        userNameInput.style.display = 'none';
+        submitNameBtn.style.display = 'none';
 
-    const questionBox = document.querySelector('#question');
-    questionBox.style.display = 'block';
+        const questionBox = document.querySelector('#question');
+        questionBox.style.display = 'block';
 
-    start();
+        start();
+    }
+    
 
 });
 inputContainer.appendChild(submitNameBtn);
@@ -129,44 +134,74 @@ function start () {
             }
         },
         openDoorChoice: {
-            dialogue: `You unfortunately didn't bring an umbrella, so you quickly run up to the front door. There is a letter on the ground. Do you knock on the door and pick up the letter or do you open the front door?`,
+            dialogue: `You unfortunately didn't bring an umbrella, so you quickly run up to the front door. There is a letter in your pocket, the invitation given to you for this party. Do you knock on the door and give the letter to whomever answers, or do you open the front door?`,
             knock: function () {
                 game.knockFD.createDisplay();
+                document.getElementById('inv');
+
             },
             open: function () {
                 game.openFD.createDisplay();
             },
-            createDisplay(optionText) {
+            createDisplay() {
                 document.getElementById('question').innerText = game.openDoor.dialogue;
 
-                options.innerHTML = `<li onclick="game['openDoor'].knock()"> Knock on the door and pick up letter </li>
+                options.innerHTML = `<li onclick="game['openDoor'].knock()"> Knock on the door and give the invitation </li>
             <li onclick="game['openDoor'].open()"> Open the door </li>`;
 
                 options.querySelectorAll('li');
             }
         },
         knockOnFrontDoor: {
-            dialogue: `You knock on the door and pick up the letter`,
-            pickUpLetter: function () {
-                game.enterFD.createDisplay();
-                document.getElementById('inv');
+            dialogue: `You knock on the door and take out the letter. A larger man answers the door, dressed in a well tailored butlers suit. "Good Evening ${userName}. Thank you for your participation tonight, please, do come in." and with that, the butler takes your invitation and coat, and leads you inside.`,
+            askButlerDetails: function () {
+                game.butlerDetails.createDisplay();
+            },
+            walkToOpenDoorOnLeft: function () {
+                game.openDoorLeft.createDisplay();
+            },
+            createDisplay(){
+                document.getElementById('question').innerText = game.knockFD.dialogue;
 
+                options.innerHTML = `<li onclick="game['knockFD'].askButlerDetails()"> Ask the Butler more about what the mysterious party is. </li>
+                <li onclick="game['knockFD'].walkToOpenDoorOnLeft()"> Head straight for the open door on your left. </li>`;
+                options.querySelectorAll('li');                
             }
-        }
+        },
+        // openFrontDoor: {
+        //     explainToButler,
+        //     ignoreButler,
+
+        // },
+        // askTheButlerDetails: {
+
+        // },
+        
 
     }
 
 
     game = {
-        inventory: [],
+        inventory: ['invitation', 'flashlight'],
         text1: mainText.text1,
         text2: mainText.text2,
         text3: mainText.text3,
         openDoor: mainText.openDoorChoice,
         knockFD: mainText.knockOnFrontDoor,
-        openFD: mainText.openFrontDoor
+        openFD: mainText.openFrontDoor,
+        butlerDetails: mainText.askTheButlerDetails,
+        openDoorLeft: mainText.walkToOpenDoorOnLeft,
+        explainToButler: mainText.explainToButlerOpen,
+        ignoreTheButler: mainText.ignoreButler,
+
+
     };
     mainText.text1.createDisplay();
+
+    const invList = document.querySelector('#inv');
+    const items = document.createElement('li');
+    items.innerText(game.inventory);
+    invList.appendChild(items);
     
     
 }
@@ -174,6 +209,10 @@ function start () {
 
 
 
+
+// ****** CHARACTER SELECT *******
+
+// characterContainer
 
 
 
@@ -198,7 +237,18 @@ characterContainer.appendChild(maleImg);
 maleImg.innerText = 'male';
 
 
+femaleImg.addEventListener('click', function(){
+    maleImg.style.display = 'none';
+});
+maleImg.addEventListener('click', function(){
+    femaleImg.style.display = 'none';
+});
 
+
+
+const borderContainer = document.createElement('div');
+borderContainer.classList.add('borderContainer');
+characterContainer.appendChild(borderContainer);
 
 const blueBorder = document.createElement('div');
 blueBorder.classList.add('blue-border-btn');
@@ -206,6 +256,7 @@ blueBorder.addEventListener('click', function () {
     let bs = 'lightblue 4px solid'
     gameContainer.style.border = bs;
     decisionContainer.style.border = bs;
+    // options.style.backgroundColor = 'lightblue'; 
 });
 
 const redBorder = document.createElement('div');
@@ -225,6 +276,6 @@ greenBorder.addEventListener('click', function () {
     decisionContainer.style.border = bs;
 });
 
-characterContainer.appendChild(blueBorder);
-characterContainer.appendChild(greenBorder);
-characterContainer.appendChild(redBorder);
+borderContainer.appendChild(blueBorder);
+borderContainer.appendChild(greenBorder);
+borderContainer.appendChild(redBorder);
