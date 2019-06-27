@@ -118,8 +118,6 @@ function start () {
             dialogue: `The invitation informed ${userName} of a dinner party being held tonight at the old manner. "I wonder who else is going to show up?", you question.`,
             next: function () {
                 game.text3.createDisplay();
-                addToInv('Umbrella');
-                getInv();
             },
             createDisplay() {
                 setQuestion.innerText = game.text2.dialogue;
@@ -131,8 +129,8 @@ function start () {
             dialogue: `You step out of the car. The rain is persistant, coming down in sheets. You glance upon the manner that looms straight ahead; a large mansion, beautifully crafted, with large windows with light pouring out to the darkness.`,
             next: function () {
                 game.openDoor.createDisplay();
-                // removeInv('Invitation');
-                getInv();
+                addToInv('Car Keys');
+                
             },
             createDisplay() {
                 setQuestion.innerText = game.text3.dialogue;
@@ -144,8 +142,7 @@ function start () {
             dialogue: `You unfortunately didn't bring an umbrella, so you quickly run up to the front door. There is a letter in your pocket, the invitation given to you for this party. Do you knock on the door and give the letter to whomever answers, or do you open the front door?`,
             knock: function () {
                 game.knockFD.createDisplay();
-                document.getElementById('inv');
-
+                removeInv('Invitation');                
             },
             open: function () {
                 game.openFD.createDisplay();
@@ -216,18 +213,17 @@ function start () {
     mainText.text1.createDisplay();
 
     function addToInv (item) {
-        return game.inventory.push(item);
+        game.inventory.push(item);
+        getInv();
     };
-    // function removeInv (item) {
-    //     let gameInv = game.inventory;
-    //     let gameInvLength = gameInv.length;
-
-    //     for (let i = 0; i < gameInvLength; i++) {
-    //         if(item === gameInv[i]){
-    //             return gameInv.splice(gameInv[i]);
-    //         };
-    //     };
-    // }
+    function removeInv (item) {
+        let gameInv = game.inventory;
+        let index = gameInv.indexOf(item);
+        if(index > -1) {
+            gameInv.splice(index, 1);
+        };
+        getInv();
+    };
 
     
     function getInv () {
