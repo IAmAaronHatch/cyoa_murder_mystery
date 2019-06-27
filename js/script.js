@@ -38,7 +38,7 @@ submitNameBtn.addEventListener('click', function () {
     } else {
         userName = userNameInput.value;
 
-        const displayName = document.createElement('h2');
+        const displayName = document.createElement('h1');
         displayName.innerText = userName;
         characterContainer.prepend(displayName);
 
@@ -90,6 +90,7 @@ decisionContainer.appendChild(setOptions);
 // selecting all of the options
 const options = document.querySelector('#options');
 
+
 // to keep track of choices?
 const array = [];
 
@@ -99,14 +100,16 @@ let mainText;
 let game;
 
 function start () {
+    
     mainText = {
         text1: {
             dialogue: `It is a dark and stormy night. You, ${userName} look down at your invitation you had recently received.`,
             next: function () {
-                game.text2.createDisplay();
+                game.text2.createDisplay(); 
+                getInv();                               
             },
             createDisplay() {
-                document.getElementById('question').innerText = game.text1.dialogue;
+                setQuestion.innerText = game.text1.dialogue;
 
                 options.innerHTML = `<li onclick="game['text1'].next()"> > </li>`
             }
@@ -115,9 +118,11 @@ function start () {
             dialogue: `The invitation informed ${userName} of a dinner party being held tonight at the old manner. "I wonder who else is going to show up?", you question.`,
             next: function () {
                 game.text3.createDisplay();
+                addToInv('Umbrella');
+                getInv();
             },
             createDisplay() {
-                document.getElementById('question').innerText = game.text2.dialogue;
+                setQuestion.innerText = game.text2.dialogue;
 
                 options.innerHTML = `<li onclick="game['text2'].next()"> > </li>`
             }
@@ -126,9 +131,11 @@ function start () {
             dialogue: `You step out of the car. The rain is persistant, coming down in sheets. You glance upon the manner that looms straight ahead; a large mansion, beautifully crafted, with large windows with light pouring out to the darkness.`,
             next: function () {
                 game.openDoor.createDisplay();
+                // removeInv('Invitation');
+                getInv();
             },
             createDisplay() {
-                document.getElementById('question').innerText = game.text3.dialogue;
+                setQuestion.innerText = game.text3.dialogue;
 
                 options.innerHTML = `<li onclick="game['text3'].next()"> > </li>`
             }
@@ -144,7 +151,7 @@ function start () {
                 game.openFD.createDisplay();
             },
             createDisplay() {
-                document.getElementById('question').innerText = game.openDoor.dialogue;
+                setQuestion.innerText = game.openDoor.dialogue;
 
                 options.innerHTML = `<li onclick="game['openDoor'].knock()"> Knock on the door and give the invitation </li>
             <li onclick="game['openDoor'].open()"> Open the door </li>`;
@@ -161,28 +168,38 @@ function start () {
                 game.openDoorLeft.createDisplay();
             },
             createDisplay(){
-                document.getElementById('question').innerText = game.knockFD.dialogue;
+                setQuestion.innerText = game.knockFD.dialogue;
 
                 options.innerHTML = `<li onclick="game['knockFD'].askButlerDetails()"> Ask the Butler more about what the mysterious party is. </li>
                 <li onclick="game['knockFD'].walkToOpenDoorOnLeft()"> Head straight for the open door on your left. </li>`;
                 options.querySelectorAll('li');                
             }
         },
-        // openFrontDoor: {
-        //     explainToButler,
-        //     ignoreButler,
+        openFrontDoor: {
+            dialogue: `You open the front door, and step in. Down the main hallway, you see a startled man dressed in a butler uniform. "Hello, ${userName}, right? How are you this evening?". From his expression, you can clearly tell he disliked you letting yourself in.`,
+            lieToButler: function(){
+                game.lieToTheButler.createDisplay();
+            },
+            ignoreButler: function(){
+                game.ignore.createDisplay();
+            },
+            createDisplay(){
+                setQuestion.innerText = game.openFD.dialogue;
 
-        // },
+                options.innerHTML = `<li onclick="game['openFD'].lieToButler()"> Sorry sir, I had knocked and no one answered. </li><li onclick="game['openFD'].ignoreButler()"> Quickly walk past butler, without saying a word. </li>`
+            }
+
+        },
         // askTheButlerDetails: {
 
         // },
         
 
     }
-
+    
 
     game = {
-        inventory: ['invitation', 'flashlight'],
+        inventory: ['Invitation'],
         text1: mainText.text1,
         text2: mainText.text2,
         text3: mainText.text3,
@@ -193,15 +210,44 @@ function start () {
         openDoorLeft: mainText.walkToOpenDoorOnLeft,
         explainToButler: mainText.explainToButlerOpen,
         ignoreTheButler: mainText.ignoreButler,
-
+        // lieToTheButler: mainText.lieToButler,
 
     };
     mainText.text1.createDisplay();
 
-    const invList = document.querySelector('#inv');
-    const items = document.createElement('li');
-    items.innerText(game.inventory);
-    invList.appendChild(items);
+    function addToInv (item) {
+        return game.inventory.push(item);
+    };
+    // function removeInv (item) {
+    //     let gameInv = game.inventory;
+    //     let gameInvLength = gameInv.length;
+
+    //     for (let i = 0; i < gameInvLength; i++) {
+    //         if(item === gameInv[i]){
+    //             return gameInv.splice(gameInv[i]);
+    //         };
+    //     };
+    // }
+
+    
+    function getInv () {
+        const invList = document.querySelector('#inv');
+        invList.innerHTML = '';
+        let gameInv = game.inventory;
+        let gameInvLength = gameInv.length;
+        
+        for(let i = 0; i < gameInvLength; i++){
+            let item = document.createElement('li');
+            item.innerText = gameInv[i];
+            invList.appendChild(item);
+        };
+
+        
+    };
+
+
+
+    
     
     
 }
@@ -246,6 +292,12 @@ maleImg.addEventListener('click', function(){
 
 
 
+
+
+
+
+// const optionsLi = document.setOptions.querySelectorAll('li');
+
 const borderContainer = document.createElement('div');
 borderContainer.classList.add('borderContainer');
 characterContainer.appendChild(borderContainer);
@@ -257,8 +309,8 @@ boxShadowBorder.addEventListener('click', function(){
     let bs = '1px dashed #ddd';
     gameContainer.style.boxShadow = bshadow;
     gameContainer.style.border = bs;
-    decisionContainer.style.boxShadow = bshadow;    
-    decisionContainer.style.border = bs;    
+    setQuestion.style.boxShadow = bshadow;    
+    setQuestion.style.border = bs;    
     
 })
 
@@ -268,7 +320,7 @@ blueBorder.addEventListener('click', function () {
     let bs = '4px solid lightblue';
     
     gameContainer.style.border = bs;
-    decisionContainer.style.border = bs;
+    setQuestion.style.border = bs;
 });
 
 const redBorder = document.createElement('div');
@@ -276,7 +328,8 @@ redBorder.classList.add('red-border-btn');
 redBorder.addEventListener('click', function () {
     let bs = 'lightcoral 4px solid';
     gameContainer.style.border = bs;
-    decisionContainer.style.border = bs;
+    setQuestion.style.border = bs;
+    
 });
 
 const greenBorder = document.createElement('div');
@@ -285,7 +338,7 @@ greenBorder.addEventListener('click', function () {
     let bs = 'lightgreen 4px solid';
 
     gameContainer.style.border = bs;
-    decisionContainer.style.border = bs;
+    setQuestion.style.border = bs;
 });
 
 borderContainer.appendChild(blueBorder);
