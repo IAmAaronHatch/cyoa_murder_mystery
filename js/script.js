@@ -159,10 +159,14 @@ function start () {
         knockOnFrontDoor: {
             dialogue: `You knock on the door and take out the letter. A larger man answers the door, dressed in a well tailored butlers suit. "Good Evening ${userName}. Thank you for your participation tonight, please, do come in." and with that, the butler takes your invitation and coat, and leads you inside.`,
             askButlerDetails: function () {
+                alert(`Oops, looks like there's no more story. Stay tuned for more!`);
                 game.butlerDetails.createDisplay();
             },
             walkToOpenDoorOnLeft: function () {
+                alert(`Oops, looks like there's no more story. Stay tuned for more!`);
                 game.openDoorLeft.createDisplay();
+
+
             },
             createDisplay(){
                 setQuestion.innerText = game.knockFD.dialogue;
@@ -175,9 +179,11 @@ function start () {
         openFrontDoor: {
             dialogue: `You open the front door, and step in. Down the main hallway, you see a startled man dressed in a butler uniform. "Hello, ${userName}, right? How are you this evening?". From his expression, you can clearly tell he disliked you letting yourself in.`,
             lieToButler: function(){
+                alert(`Oops, looks like there's no more story. Stay tuned for more!`);
                 game.lieToTheButler.createDisplay();
             },
             ignoreButler: function(){
+                alert(`Oops, looks like there's no more story. Stay tuned for more!`);
                 game.ignore.createDisplay();
             },
             createDisplay(){
